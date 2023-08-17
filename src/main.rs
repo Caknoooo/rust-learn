@@ -6,7 +6,10 @@ async fn main() {
     let hello = warp::path!("hello" / String)
         .map(|name| format!("Hello, {}!", name));
 
-    warp::serve(hello)
+    let tes = warp::path!("tes" / String)
+        .map(|name| format!("bro, {}!", name));
+
+    warp::serve(hello.or(tes))
         .run(([127, 0, 0, 1], 3030))
         .await;
 }
